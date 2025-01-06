@@ -1,4 +1,4 @@
-<div class="auth-page">
+<div class="auth-page moving-image-background">
   <div class="container page">
     <div class="row">
       <div class="col-md-6 offset-md-3 col-xs-12">
@@ -19,15 +19,16 @@
                 *ngIf="authType === 'register'"
                 formControlName="username"
                 placeholder="Username"
-                class="form-control form-control-lg"
+                class="input form-control form-control-lg"
                 type="text"
               />
             </fieldset>
+
             <fieldset class="form-group">
               <input
                 formControlName="email"
                 placeholder="Email"
-                class="form-control form-control-lg"
+                class="input form-control form-control-lg"
                 type="text"
               />
             </fieldset>
@@ -35,16 +36,56 @@
               <input
                 formControlName="password"
                 placeholder="Password"
-                class="form-control form-control-lg"
+                class="input form-control form-control-lg"
                 type="password"
               />
             </fieldset>
+
             <button
               class="btn btn-lg btn-primary pull-xs-right"
               [disabled]="!authForm.valid"
               type="submit"
             >
-              {{ title }}
+              <div class="wrapper">
+                <p class="text">{{ title }}</p>
+
+                <div class="flower flower1">
+                  <div class="petal one"></div>
+                  <div class="petal two"></div>
+                  <div class="petal three"></div>
+                  <div class="petal four"></div>
+                </div>
+                <div class="flower flower2">
+                  <div class="petal one"></div>
+                  <div class="petal two"></div>
+                  <div class="petal three"></div>
+                  <div class="petal four"></div>
+                </div>
+                <div class="flower flower3">
+                  <div class="petal one"></div>
+                  <div class="petal two"></div>
+                  <div class="petal three"></div>
+                  <div class="petal four"></div>
+                </div>
+                <div class="flower flower4">
+                  <div class="petal one"></div>
+                  <div class="petal two"></div>
+                  <div class="petal three"></div>
+                  <div class="petal four"></div>
+                </div>
+                <div class="flower flower5">
+                  <div class="petal one"></div>
+                  <div class="petal two"></div>
+                  <div class="petal three"></div>
+                  <div class="petal four"></div>
+                </div>
+                <div class="flower flower6">
+                  <div class="petal one"></div>
+                  <div class="petal two"></div>
+                  <div class="petal three"></div>
+                  <div class="petal four"></div>
+                </div>
+              </div>
             </button>
           </fieldset>
         </form>

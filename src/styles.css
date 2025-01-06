@@ -1,1 +1,334 @@
 /* You can add global styles to this file, and also import other style files */
+.moving-image-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("assets/background.jpg") no-repeat center center;
+  background-size: cover;
+  animation: zoomMove 20s infinite alternate ease-in-out;
+  z-index: -1;
+}
+
+@keyframes zoomMove {
+  0% {
+    transform: scale(1) translate(0, 0);
+  }
+  50% {
+    transform: scale(1.2) translate(-10px, -10px);
+  }
+  100% {
+    transform: scale(1) translate(0, 0);
+  }
+}
+
+/* From Uiverse.io by yaroslavas2001 */
+.btn {
+  height: 4em;
+  width: 12em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 0px solid black;
+  cursor: pointer;
+}
+
+.wrapper {
+  height: 2em;
+  width: 8em;
+  position: relative;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text {
+  font-size: 17px;
+  z-index: 1;
+  color: #000;
+  padding: 4px 12px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.7);
+  transition: all 0.5s ease;
+}
+
+.flower {
+  display: grid;
+  grid-template-columns: 1em 1em;
+  position: absolute;
+  transition: grid-template-columns 0.8s ease;
+}
+
+.flower1 {
+  top: -12px;
+  left: -13px;
+  transform: rotate(5deg);
+}
+
+.flower2 {
+  bottom: -5px;
+  left: 8px;
+  transform: rotate(35deg);
+}
+
+.flower3 {
+  bottom: -15px;
+  transform: rotate(0deg);
+}
+
+.flower4 {
+  top: -14px;
+  transform: rotate(15deg);
+}
+
+.flower5 {
+  right: 11px;
+  top: -3px;
+  transform: rotate(25deg);
+}
+
+.flower6 {
+  right: -15px;
+  bottom: -15px;
+  transform: rotate(30deg);
+}
+
+.petal {
+  height: 1em;
+  width: 1em;
+  border-radius: 40% 70% / 7% 90%;
+  background: linear-gradient(#07a6d7, #93e0ee);
+  border: 0.5px solid #96d1ec;
+  z-index: 0;
+  transition: width 0.8s ease, height 0.8s ease;
+}
+
+.two {
+  transform: rotate(90deg);
+}
+
+.three {
+  transform: rotate(270deg);
+}
+
+.four {
+  transform: rotate(180deg);
+}
+
+.btn:hover .petal {
+  background: linear-gradient(#0761d7, #93bdee);
+  border: 0.5px solid #96b4ec;
+}
+
+.btn:hover .flower {
+  grid-template-columns: 1.5em 1.5em;
+}
+
+.btn:hover .flower .petal {
+  width: 1.5em;
+  height: 1.5em;
+}
+
+.btn:hover .text {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.btn:hover div.flower1 {
+  animation: 15s linear 0s normal none infinite running flower1;
+}
+
+@keyframes flower1 {
+  0% {
+    transform: rotate(5deg);
+  }
+
+  100% {
+    transform: rotate(365deg);
+  }
+}
+
+.btn:hover div.flower2 {
+  animation: 13s linear 1s normal none infinite running flower2;
+}
+
+@keyframes flower2 {
+  0% {
+    transform: rotate(35deg);
+  }
+
+  100% {
+    transform: rotate(-325deg);
+  }
+}
+
+.btn:hover div.flower3 {
+  animation: 16s linear 1s normal none infinite running flower3;
+}
+
+@keyframes flower3 {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.btn:hover div.flower4 {
+  animation: 17s linear 1s normal none infinite running flower4;
+}
+
+@keyframes flower4 {
+  0% {
+    transform: rotate(15deg);
+  }
+
+  100% {
+    transform: rotate(375deg);
+  }
+}
+
+.btn:hover div.flower5 {
+  animation: 20s linear 1s normal none infinite running flower5;
+}
+
+@keyframes flower5 {
+  0% {
+    transform: rotate(25deg);
+  }
+
+  100% {
+    transform: rotate(-335deg);
+  }
+}
+
+.btn:hover div.flower6 {
+  animation: 15s linear 1s normal none infinite running flower6;
+}
+
+@keyframes flower6 {
+  0% {
+    transform: rotate(30deg);
+  }
+
+  100% {
+    transform: rotate(390deg);
+  }
+}
+
+/* From Uiverse.io by SARAN2004 */
+.input {
+  max-width: 190px;
+  height: 45px;
+  width: 100%;
+  outline: none;
+  font-size: 16px;
+  border-radius: 5px;
+  padding-left: 15px;
+  border: 1px solid #ccc;
+  border-bottom-width: 2px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.input:valid {
+  border-color: #00ff2a;
+  color: #00ff2a;
+  box-shadow: 2px 2px 8px 1px #00ff2a;
+}
+
+.input:invalid {
+  border-color: #ff0000;
+  color: #ff0000;
+  box-shadow: 2px 2px 8px 1px #ff0000;
+  translate: -8px 8px 0px 0px;
+}
+
+.text {
+  margin-top: 10px;
+  color: black;
+}
+
+/* Curseur animé */
+#animated-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 15px;
+  height: 15px;
+  background: rgba(255, 0, 0, 0.8); /* Couleur du curseur */
+  border-radius: 50%;
+  pointer-events: none; /* Ne bloque pas les clics */
+  z-index: 1000; /* S'assure que le curseur est au-dessus de tout */
+  animation: pulse 1s infinite; /* Animation (optionnelle) */
+}
+
+/* Animation de pulsation */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+/* From Uiverse.io by bhaveshxrawat */
+.card {
+  width: 190px;
+  height: 254px;
+  background: #07182e;
+  position: relative;
+  display: flex;
+  place-content: center;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.card h2 {
+  z-index: 1;
+  color: white;
+  font-size: 2em;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  width: 100px;
+  background-image: linear-gradient(
+    180deg,
+    rgb(0, 183, 255),
+    rgb(255, 48, 255)
+  );
+  height: 130%;
+  animation: rotBGimg 3s linear infinite;
+  transition: all 0.2s linear;
+}
+
+@keyframes rotBGimg {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  background: #07182e;
+  inset: 5px;
+  border-radius: 15px;
+}
+.card:hover:before {
+  background-image: linear-gradient(180deg, rgb(81, 255, 0), purple);
+  animation: rotBGimg 3.5s linear infinite;
+}
