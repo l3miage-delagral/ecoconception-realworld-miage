@@ -1,47 +1,32 @@
-<div class="home-background"></div>
+<div class="home-background fade-in"></div>
 
 <div class="main-content home-content fade-in">
-  <div class="banner" *appShowAuthed="false">
+  <div class="banner slide-in-left" *appShowAuthed="false">
     <div class="container">
-      <h1 class="logo-font">conduit</h1>
-      <p>A place to share your <i>Angular</i> knowledge.</p>
-      <img src="/assets/chien.gif" alt="Chien" class="chien-gif" />
-      <button class="btn btn-primary" (click)="openPopup()">
+      <h1 class="logo-font bounce">conduit</h1>
+      <p class="fade-in">A place to share your <i>Angular</i> knowledge.</p>
+      <img
+        src="/assets/chien.gif"
+        alt="Chien"
+        class="chien-gif slide-in-right"
+      />
+      <button class="btn btn-primary slide-in-left" (click)="openPopup()">
         Open Mindmap
       </button>
       <iframe
         id="introVideo"
-        class="intro-video"
+        class="intro-video fade-in"
         src="https://www.youtube.com/embed/HuFYqnbVbzY?autoplay=1&loop=1&controls=0&playlist=HuFYqnbVbzY"
         frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen
       ></iframe>
-      <div
-        style="width: 100%; height: 0; padding-bottom: 56%; position: relative"
-      >
-        <iframe
-          src="https://giphy.com/embed/TzLVmBks7XSbuS7f42"
-          width="100%"
-          height="100%"
-          style="position: absolute"
-          frameBorder="0"
-          class="giphy-embed"
-          allowFullScreen
-        ></iframe>
-      </div>
-      <p>
-        <a
-          href="https://giphy.com/gifs/goldenglobes-golden-globes-melissa-mccarthy-2025-TzLVmBks7XSbuS7f42"
-          >via GIPHY</a
-        >
-      </p>
     </div>
   </div>
 
   <div class="container page">
     <div class="row">
-      <div class="col-md-9">
+      <div class="col-md-9 slide-in-left">
         <div class="feed-toggle card">
           <ul class="nav nav-pills outline-active">
             <li class="nav-item card fade-in">
@@ -57,7 +42,7 @@
                 Your Feed
               </a>
             </li>
-            <li class="nav-item card">
+            <li class="nav-item card fade-in">
               <a
                 class="nav-link"
                 [ngClass]="{
@@ -72,7 +57,10 @@
                 Global Feed
               </a>
             </li>
-            <li class="nav-item card" [hidden]="!listConfig.filters.tag">
+            <li
+              class="nav-item card fade-in"
+              [hidden]="!listConfig.filters.tag"
+            >
               <a
                 class="nav-link active"
                 style="transition: transform 0.3s ease-in-out"
@@ -94,14 +82,14 @@
         </div>
       </div>
 
-      <div class="col-md-3" *rxLet="tags$; let tags">
+      <div class="col-md-3 slide-in-right" *rxLet="tags$; let tags">
         <div class="sidebar card">
-          <p>Popular Tags</p>
+          <p class="fade-in">Popular Tags</p>
 
           <div class="wrapper">
             <div class="inner" [style.--quantity]="tags.length">
               <div
-                class="card"
+                class="card fade-in"
                 *ngFor="let tag of tags; let i = index"
                 [style.--index]="i"
                 [style.--color-card]="getColor(i)"
@@ -114,9 +102,9 @@
             </div>
           </div>
 
-          <div [hidden]="tagsLoaded" class="card">Loading tags...</div>
+          <div [hidden]="tagsLoaded" class="card fade-in">Loading tags...</div>
 
-          <div [hidden]="!tagsLoaded || tags.length > 0" class="card">
+          <div [hidden]="!tagsLoaded || tags.length > 0" class="card fade-in">
             No tags are here... yet.
           </div>
         </div>
@@ -149,11 +137,3 @@
 
 <!-- Tooltip -->
 <div id="tooltip" class="tooltip fade-in"></div>
-
-<!-- Popup Modal -->
-<div id="popupModal" class="modal">
-  <div class="modal-content">
-    <span class="close" (click)="closePopup()">&times;</span>
-    <img src="/assets/mindmap.jpg" alt="Mindmap" class="mindmap-img" />
-  </div>
-</div>
