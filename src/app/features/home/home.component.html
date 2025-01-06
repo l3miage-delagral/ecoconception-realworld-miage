@@ -1,90 +1,120 @@
-<div class="home-background">
-  <div class="main-content home-content">
-    <div class="banner" *appShowAuthed="false">
-      <div class="container">
-        <h1 class="logo-font">conduit</h1>
-        <p>A place to share your <i>Angular</i> knowledge.</p>
-      </div>
+<div class="home-background"></div>
+
+<div class="main-content home-content fade-in">
+  <div class="banner" *appShowAuthed="false">
+    <div class="container">
+      <h1 class="logo-font">conduit</h1>
+      <p>A place to share your <i>Angular</i> knowledge.</p>
     </div>
+  </div>
 
-    <div class="container page">
-      <div class="row">
-        <div class="col-md-9">
-          <div class="feed-toggle card">
-            <ul class="nav nav-pills outline-active">
-              <li class="nav-item card">
-                <a
-                  class="nav-link"
-                  [ngClass]="{ active: listConfig.type === 'feed' }"
-                  (click)="setListTo('feed')"
-                  style="transition: transform 0.3s ease-in-out"
-                  (mouseover)="onMouseOver($event)"
-                  (mouseout)="onMouseOut($event)"
-                >
-                  Your Feed
-                </a>
-              </li>
-              <li class="nav-item card">
-                <a
-                  class="nav-link"
-                  [ngClass]="{
-                    active: listConfig.type === 'all' && !listConfig.filters.tag
-                  }"
-                  (click)="setListTo('all')"
-                  style="transition: transform 0.3s ease-in-out"
-                  (mouseover)="onMouseOver($event)"
-                  (mouseout)="onMouseOut($event)"
-                >
-                  Global Feed
-                </a>
-              </li>
-              <li class="nav-item card" [hidden]="!listConfig.filters.tag">
-                <a
-                  class="nav-link active"
-                  style="transition: transform 0.3s ease-in-out"
-                  (mouseover)="onMouseOver($event)"
-                  (mouseout)="onMouseOut($event)"
-                >
-                  <i class="ion-pound"></i> {{ listConfig.filters.tag }}
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <div class="card">
-            <app-article-list
-              [limit]="10"
-              [config]="listConfig"
-            ></app-article-list>
-          </div>
+  <div class="container page">
+    <div class="row">
+      <div class="col-md-9">
+        <div class="feed-toggle card">
+          <ul class="nav nav-pills outline-active">
+            <li class="nav-item card fade-in">
+              <a
+                class="nav-link"
+                [ngClass]="{ active: listConfig.type === 'feed' }"
+                (click)="setListTo('feed')"
+                style="transition: transform 0.3s ease-in-out"
+                (mouseover)="onMouseOver($event)"
+                (mouseout)="onMouseOut($event)"
+                (click)="openModal('feedModal')"
+              >
+                Your Feed
+              </a>
+            </li>
+            <li class="nav-item card">
+              <a
+                class="nav-link"
+                [ngClass]="{
+                  active: listConfig.type === 'all' && !listConfig.filters.tag
+                }"
+                (click)="setListTo('all')"
+                style="transition: transform 0.3s ease-in-out"
+                (mouseover)="onMouseOver($event)"
+                (mouseout)="onMouseOut($event)"
+                (click)="openModal('globalFeedModal')"
+              >
+                Global Feed
+              </a>
+            </li>
+            <li class="nav-item card" [hidden]="!listConfig.filters.tag">
+              <a
+                class="nav-link active"
+                style="transition: transform 0.3s ease-in-out"
+                (mouseover)="onMouseOver($event)"
+                (mouseout)="onMouseOut($event)"
+                (click)="openModal('tagModal')"
+              >
+                <i class="ion-pound"></i> {{ listConfig.filters.tag }}
+              </a>
+            </li>
+          </ul>
         </div>
 
-        <div class="col-md-3" *rxLet="tags$; let tags">
-          <div class="sidebar card">
-            <p>Popular Tags</p>
+        <div class="card fade-in">
+          <app-article-list
+            [limit]="10"
+            [config]="listConfig"
+          ></app-article-list>
+        </div>
+      </div>
 
-            <div class="wrapper">
-              <div class="inner" [style.--quantity]="tags.length">
-                <div
-                  class="card"
-                  *ngFor="let tag of tags; let i = index"
-                  [style.--index]="i"
-                  [style.--color-card]="getColor(i)"
-                  (click)="setListTo('all', { tag: tag })"
-                >
-                  <div class="img">{{ tag }}</div>
-                </div>
+      <div class="col-md-3" *rxLet="tags$; let tags">
+        <div class="sidebar card">
+          <p>Popular Tags</p>
+
+          <div class="wrapper">
+            <div class="inner" [style.--quantity]="tags.length">
+              <div
+                class="card"
+                *ngFor="let tag of tags; let i = index"
+                [style.--index]="i"
+                [style.--color-card]="getColor(i)"
+                (click)="setListTo('all', { tag: tag })"
+                (mouseover)="showTooltip($event, tag)"
+                (mouseout)="hideTooltip($event)"
+              >
+                <div class="img">{{ tag }}</div>
               </div>
             </div>
+          </div>
 
-            <div [hidden]="tagsLoaded" class="card">Loading tags...</div>
+          <div [hidden]="tagsLoaded" class="card">Loading tags...</div>
 
-            <div [hidden]="!tagsLoaded || tags.length > 0" class="card">
-              No tags are here... yet.
-            </div>
+          <div [hidden]="!tagsLoaded || tags.length > 0" class="card">
+            No tags are here... yet.
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<!-- Modals -->
+<div id="feedModal" class="modal fade-in">
+  <div class="modal-content">
+    <span class="close" (click)="closeModal('feedModal')">&times;</span>
+    <p>Details about Your Feed...</p>
+  </div>
+</div>
+
+<div id="globalFeedModal" class="modal fade-in">
+  <div class="modal-content">
+    <span class="close" (click)="closeModal('globalFeedModal')">&times;</span>
+    <p>Details about Global Feed...</p>
+  </div>
+</div>
+
+<div id="tagModal" class="modal fade-in">
+  <div class="modal-content">
+    <span class="close" (click)="closeModal('tagModal')">&times;</span>
+    <p>Details about the selected tag...</p>
+  </div>
+</div>
+
+<!-- Tooltip -->
+<div id="tooltip" class="tooltip fade-in"></div>

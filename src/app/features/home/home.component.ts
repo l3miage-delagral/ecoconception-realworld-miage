@@ -98,4 +98,35 @@ export class HomeComponent implements OnInit, OnDestroy {
     ];
     return colors[index % colors.length];
   }
+
+  openModal(modalId: string): void {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+      modal.style.display = "block";
+    }
+  }
+
+  closeModal(modalId: string): void {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+      modal.style.display = "none";
+    }
+  }
+
+  showTooltip(event: MouseEvent, text: string): void {
+    const tooltip = document.getElementById("tooltip");
+    if (tooltip) {
+      tooltip.style.display = "block";
+      tooltip.style.left = `${event.pageX + 10}px`;
+      tooltip.style.top = `${event.pageY + 10}px`;
+      tooltip.innerText = text;
+    }
+  }
+
+  hideTooltip(event: MouseEvent): void {
+    const tooltip = document.getElementById("tooltip");
+    if (tooltip) {
+      tooltip.style.display = "none";
+    }
+  }
 }
