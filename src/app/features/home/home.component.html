@@ -137,3 +137,12 @@
 
 <!-- Tooltip -->
 <div id="tooltip" class="tooltip fade-in"></div>
+
+<script>
+  // Notation jQuery
+  $(document).ready(function () {
+    $("a.extlink").each(function () {
+      $(this).attr("rel", "external nofollow");
+    });
+  });
+</script>
