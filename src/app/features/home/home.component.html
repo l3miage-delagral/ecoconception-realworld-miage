@@ -5,6 +5,10 @@
     <div class="container">
       <h1 class="logo-font">conduit</h1>
       <p>A place to share your <i>Angular</i> knowledge.</p>
+      <img src="/assets/chien.gif" alt="Chien" class="chien-gif" />
+      <button class="btn btn-primary" (click)="openPopup()">
+        Open Mindmap
+      </button>
     </div>
   </div>
 
@@ -118,3 +122,11 @@
 
 <!-- Tooltip -->
 <div id="tooltip" class="tooltip fade-in"></div>
+
+<!-- Popup Modal -->
+<div id="popupModal" class="modal">
+  <div class="modal-content">
+    <span class="close" (click)="closePopup()">&times;</span>
+    <img src="/assets/mindmap.jpg" alt="Mindmap" class="mindmap-img" />
+  </div>
+</div>

@@ -110,3 +110,8 @@
   border-radius: 5px;
   z-index: 1000;
 }
+
+.mindmap-img {
+  width: 100%;
+  height: auto;
+}

@@ -129,4 +129,18 @@ export class HomeComponent implements OnInit, OnDestroy {
       tooltip.style.display = "none";
     }
   }
+
+  openPopup(): void {
+    const popupModal = document.getElementById("popupModal");
+    if (popupModal) {
+      popupModal.style.display = "block";
+    }
+  }
+
+  closePopup(): void {
+    const popupModal = document.getElementById("popupModal");
+    if (popupModal) {
+      popupModal.style.display = "none";
+    }
+  }
 }
