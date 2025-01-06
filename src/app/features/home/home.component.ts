@@ -26,6 +26,7 @@ import { ShowAuthedDirective } from "../../shared/show-authed.directive";
 })
 export class HomeComponent implements OnInit, OnDestroy {
   isAuthenticated = false;
+
   listConfig: ArticleListConfig = {
     type: "all",
     filters: {},
@@ -58,6 +59,14 @@ export class HomeComponent implements OnInit, OnDestroy {
       );
   }
 
+  onMouseOver(event: Event): void {
+    (event.target as HTMLElement).style.transform = "scale(1.1)";
+  }
+
+  onMouseOut(event: Event): void {
+    (event.target as HTMLElement).style.transform = "scale(1)";
+  }
+
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
@@ -72,5 +81,21 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     // Otherwise, set the list object
     this.listConfig = { type: type, filters: filters };
+  }
+
+  getColor(index: number): string {
+    const colors = [
+      "142, 249, 252",
+      "142, 252, 204",
+      "142, 252, 157",
+      "215, 252, 142",
+      "252, 252, 142",
+      "252, 208, 142",
+      "252, 142, 142",
+      "252, 142, 239",
+      "204, 142, 252",
+      "142, 202, 252",
+    ];
+    return colors[index % colors.length];
   }
 }

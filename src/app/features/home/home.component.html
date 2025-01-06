@@ -10,59 +10,76 @@
     <div class="container page">
       <div class="row">
         <div class="col-md-9">
-          <div class="feed-toggle">
+          <div class="feed-toggle card">
             <ul class="nav nav-pills outline-active">
-              <li class="nav-item">
+              <li class="nav-item card">
                 <a
                   class="nav-link"
                   [ngClass]="{ active: listConfig.type === 'feed' }"
                   (click)="setListTo('feed')"
+                  style="transition: transform 0.3s ease-in-out"
+                  (mouseover)="onMouseOver($event)"
+                  (mouseout)="onMouseOut($event)"
                 >
                   Your Feed
                 </a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item card">
                 <a
                   class="nav-link"
                   [ngClass]="{
                     active: listConfig.type === 'all' && !listConfig.filters.tag
                   }"
                   (click)="setListTo('all')"
+                  style="transition: transform 0.3s ease-in-out"
+                  (mouseover)="onMouseOver($event)"
+                  (mouseout)="onMouseOut($event)"
                 >
                   Global Feed
                 </a>
               </li>
-              <li class="nav-item" [hidden]="!listConfig.filters.tag">
-                <a class="nav-link active">
+              <li class="nav-item card" [hidden]="!listConfig.filters.tag">
+                <a
+                  class="nav-link active"
+                  style="transition: transform 0.3s ease-in-out"
+                  (mouseover)="onMouseOver($event)"
+                  (mouseout)="onMouseOut($event)"
+                >
                   <i class="ion-pound"></i> {{ listConfig.filters.tag }}
                 </a>
               </li>
             </ul>
           </div>
 
-          <app-article-list
-            [limit]="10"
-            [config]="listConfig"
-          ></app-article-list>
+          <div class="card">
+            <app-article-list
+              [limit]="10"
+              [config]="listConfig"
+            ></app-article-list>
+          </div>
         </div>
 
         <div class="col-md-3" *rxLet="tags$; let tags">
-          <div class="sidebar">
+          <div class="sidebar card">
             <p>Popular Tags</p>
 
-            <div class="tag-list">
-              <a
-                *ngFor="let tag of tags"
-                (click)="setListTo('all', { tag: tag })"
-                class="tag-default tag-pill"
-              >
-                {{ tag }}
-              </a>
+            <div class="wrapper">
+              <div class="inner" [style.--quantity]="tags.length">
+                <div
+                  class="card"
+                  *ngFor="let tag of tags; let i = index"
+                  [style.--index]="i"
+                  [style.--color-card]="getColor(i)"
+                  (click)="setListTo('all', { tag: tag })"
+                >
+                  <div class="img">{{ tag }}</div>
+                </div>
+              </div>
             </div>
 
-            <div [hidden]="tagsLoaded">Loading tags...</div>
+            <div [hidden]="tagsLoaded" class="card">Loading tags...</div>
 
-            <div [hidden]="!tagsLoaded || tags.length > 0">
+            <div [hidden]="!tagsLoaded || tags.length > 0" class="card">
               No tags are here... yet.
             </div>
           </div>
